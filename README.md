@@ -1,2 +1,2 @@
-# Jogo
-Criando um jogo
+# JogoDaVelha
+Criando um jogo da velha
