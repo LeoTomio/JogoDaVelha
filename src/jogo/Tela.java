@@ -5,22 +5,179 @@
  */
 package jogo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Tomio
  */
 public class Tela extends javax.swing.JFrame {
- 
+
+    boolean jogador1Ativo = true;
+    boolean jogador2Ativo = false;
+    int vitorias1 = 0;
+    int vitorias2 = 0;
+    int empate = 0;
+    
     public Tela() {
         initComponents();
     }
 
+    public void JogadorAtivo() {
+
+        if (jogador1Ativo == true) {
+            jogador1Ativo = false;
+            jogador2Ativo = true;
+        } else {
+            jogador1Ativo = true;
+            jogador2Ativo = false;
+        }
+
+        JogadorVencedor("O");
+        JogadorVencedor("X");
+
+    }
+
+    public void JogadorVencedor(String jogador) {
+
+                             /***                Linhas               ***/
+        /*                               Verifica a Primeira linha                           */
+        if (B1.getText().equals(jogador) && B2.getText().equals(jogador) && B3.getText().equals(jogador)) {
+            if (B1.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+        
+         /*                               Verifica a Segunda linha                           */
+        if (B4.getText().equals(jogador) && B5.getText().equals(jogador) && B6.getText().equals(jogador)) {
+            if (B4.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+        
+         /*                                 Verifica a Terceira linha                           */
+        if (B7.getText().equals(jogador) && B8.getText().equals(jogador) && B9.getText().equals(jogador)) {
+            if (B7.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+                             /***                Colunas               ***/
+         /*                                  Verifica a primeira Coluna                          */
+         if (B1.getText().equals(jogador) && B4.getText().equals(jogador) && B7.getText().equals(jogador)) {
+            if (B1.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+        
+        /*                                  Verifica a Segunda Coluna                          */
+          if (B2.getText().equals(jogador) && B5.getText().equals(jogador) && B8.getText().equals(jogador)) {
+            if (B2.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+        
+        /*                                  Verifica a Terceira Coluna                          */
+        if (B3.getText().equals(jogador) && B6.getText().equals(jogador) && B9.getText().equals(jogador)) {
+            if (B3.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+                                  /***                Diagonais               ***/
+                /*                              Verifica a Primeira Diagonal                    */
+                
+        if (B1.getText().equals(jogador) && B5.getText().equals(jogador) && B9.getText().equals(jogador)) {
+            if (B1.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+        
+                /*                              Verifica a Segunda Diagonal                     */
+        if (B3.getText().equals(jogador) && B5.getText().equals(jogador) && B7.getText().equals(jogador)) {
+            if (B3.getText().equals("X")) {
+                Vencedor("Jogador 1");
+            } else {
+                Vencedor("Jogador 2");
+            }
+        }
+                                 /***                Empate               ***/
+            
+        if(!B1.getText().equals("") &&
+                !B2.getText().equals("") &&
+                !B3.getText().equals("") &&
+                !B4.getText().equals("") &&
+                !B5.getText().equals("") &&
+                !B6.getText().equals("") &&
+                !B7.getText().equals("") &&
+                !B8.getText().equals("") &&
+                !B9.getText().equals("")){
+            
+            Vencedor("Empate");
+        }
+        
+        
+        
+        
+
+    }
+
+    public void Vencedor(String JogadorVencedor) {
+
+        if (JogadorVencedor.equals("Jogador 1")) {
+            JOptionPane.showMessageDialog(Tela.this,"Parabéns,Vencedor é o Jogador 1 ");
+            vitorias1++;
+            NVitoriasJogador1.setText("" + vitorias1);
+            LimparCampos();
+        }
+
+        if (JogadorVencedor.equals("Jogador 2")) {
+            JOptionPane.showMessageDialog(Tela.this,"Parabéns,Vencedor é o Jogador 2 ");
+            vitorias2++;
+            NVitoriasJogador2.setText("" + vitorias2);
+            LimparCampos();
+        }
+         if (JogadorVencedor.equals("Empate")) {
+           JOptionPane.showMessageDialog(Tela.this,"Empatou");
+           empate++;
+           NEmpates.setText("" + empate);
+            LimparCampos();
+         }
+        
+    }
     
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    public void LimparCampos(){
+        B1.setText("");
+        B2.setText("");
+        B3.setText("");
+        B4.setText("");
+        B5.setText("");
+        B6.setText("");
+        B7.setText("");
+        B8.setText("");
+        B9.setText("");
+    
+        boolean jogador1Ativo = true;
+        boolean jogador2Ativo = false;
+        
+    }
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,7 +192,7 @@ public class Tela extends javax.swing.JFrame {
         B9 = new javax.swing.JButton();
         B8 = new javax.swing.JButton();
         B7 = new javax.swing.JButton();
-        NEmpates = new javax.swing.JPanel();
+        painel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -47,67 +204,76 @@ public class Tela extends javax.swing.JFrame {
         NVitoriasJogador1 = new javax.swing.JLabel();
         NVitoriasJogador2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        NEmpates = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        SobreoJogo = new javax.swing.JButton();
+        Regras = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         Sair = new javax.swing.JButton();
         ResetPlacar = new javax.swing.JButton();
         NovoJogo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Jogo da Velha");
+        setTitle("JogoDaVelha");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        B1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B1ActionPerformed(evt);
             }
         });
 
+        B2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B2ActionPerformed(evt);
             }
         });
 
+        B3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B3ActionPerformed(evt);
             }
         });
 
+        B6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B6ActionPerformed(evt);
             }
         });
 
+        B5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B5ActionPerformed(evt);
             }
         });
 
+        B4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B4ActionPerformed(evt);
             }
         });
 
+        B9.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B9ActionPerformed(evt);
             }
         });
 
+        B8.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B8ActionPerformed(evt);
             }
         });
 
+        B7.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B7ActionPerformed(evt);
@@ -175,87 +341,107 @@ public class Tela extends javax.swing.JFrame {
 
         jLabel11.setText("Número Empates :");
 
-        jLabel3.setText("0");
+        NEmpates.setText("0");
 
-        javax.swing.GroupLayout NEmpatesLayout = new javax.swing.GroupLayout(NEmpates);
-        NEmpates.setLayout(NEmpatesLayout);
-        NEmpatesLayout.setHorizontalGroup(
-            NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(NEmpatesLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
+        painel.setLayout(painelLayout);
+        painelLayout.setHorizontalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(NEmpatesLayout.createSequentialGroup()
-                        .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(NEmpatesLayout.createSequentialGroup()
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLayout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(NEmpatesLayout.createSequentialGroup()
+                                .addComponent(NEmpates, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(46, 46, 46)
                                 .addComponent(jLabel8))
-                            .addGroup(NEmpatesLayout.createSequentialGroup()
+                            .addGroup(painelLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(45, 45, 45)
                                 .addComponent(jLabel7))
-                            .addGroup(NEmpatesLayout.createSequentialGroup()
+                            .addGroup(painelLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(NVitoriasJogador2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(NEmpatesLayout.createSequentialGroup()
-                        .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(painelLayout.createSequentialGroup()
+                        .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, NEmpatesLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(NVitoriasJogador1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
-        NEmpatesLayout.setVerticalGroup(
-            NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(NEmpatesLayout.createSequentialGroup()
+        painelLayout.setVerticalGroup(
+            painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NVitoriasJogador1)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(NVitoriasJogador2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(NEmpatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel3))
+                    .addComponent(NEmpates))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Informações do Jogo");
 
-        SobreoJogo.setText("Sobre o Jogo");
+        Regras.setText("Regras");
+        Regras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegrasActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Opções de Jogo");
 
         Sair.setText("Sair do Jogo");
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
+            }
+        });
 
         ResetPlacar.setText("Resetar Placar");
+        ResetPlacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetPlacarActionPerformed(evt);
+            }
+        });
 
         NovoJogo.setText("Novo Jogo");
+        NovoJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoJogoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,14 +452,14 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NEmpates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ResetPlacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SobreoJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Regras, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,12 +477,12 @@ public class Tela extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(13, 13, 13)
-                        .addComponent(NEmpates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(painel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SobreoJogo)
+                            .addComponent(Regras)
                             .addComponent(NovoJogo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,40 +496,159 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        // TODO add your handling code here:
+
+        if (jogador1Ativo == true) {
+            if (B1.getText().equals("")) {
+                B1.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B1.getText().equals("")) {
+                B1.setText("O");
+                JogadorAtivo();
+            }
+        }
+
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B2.getText().equals("")) {
+                B2.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B2.getText().equals("")) {
+                B2.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B2ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B3.getText().equals("")) {
+                B3.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B3.getText().equals("")) {
+                B3.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B3ActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B4.getText().equals("")) {
+                B4.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B4.getText().equals("")) {
+                B4.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B5.getText().equals("")) {
+                B5.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B5.getText().equals("")) {
+                B5.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B6.getText().equals("")) {
+                B6.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B6.getText().equals("")) {
+                B6.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B7.getText().equals("")) {
+                B7.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B7.getText().equals("")) {
+                B7.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B8.getText().equals("")) {
+                B8.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B8.getText().equals("")) {
+                B8.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B8ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
-        // TODO add your handling code here:
+        if (jogador1Ativo == true) {
+            if (B9.getText().equals("")) {
+                B9.setText("X");
+                JogadorAtivo();
+            }
+        } else {
+            if (B9.getText().equals("")) {
+                B9.setText("O");
+                JogadorAtivo();
+            }
+        }
     }//GEN-LAST:event_B9ActionPerformed
+
+    private void NovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoJogoActionPerformed
+      
+        LimparCampos();
+        
+    }//GEN-LAST:event_NovoJogoActionPerformed
+
+    private void RegrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegrasActionPerformed
+      new RegrasDoJogoDaVelha( 
+              (int) getLocation().getX(),
+              (int) getLocation().getX(),
+              Tela.this, true).setVisible(true);
+    }//GEN-LAST:event_RegrasActionPerformed
+
+    private void ResetPlacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetPlacarActionPerformed
+       NVitoriasJogador1.setText(""+ 0);
+       NVitoriasJogador2.setText(""+ 0);
+       NEmpates.setText(""+ 0);
+       
+    }//GEN-LAST:event_ResetPlacarActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+       
+        System.exit(0);
+        
+        
+    }//GEN-LAST:event_SairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,18 +696,17 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton B7;
     private javax.swing.JButton B8;
     private javax.swing.JButton B9;
-    private javax.swing.JPanel NEmpates;
+    private javax.swing.JLabel NEmpates;
     private javax.swing.JLabel NVitoriasJogador1;
     private javax.swing.JLabel NVitoriasJogador2;
     private javax.swing.JButton NovoJogo;
+    private javax.swing.JButton Regras;
     private javax.swing.JButton ResetPlacar;
     private javax.swing.JButton Sair;
-    private javax.swing.JButton SobreoJogo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -411,5 +715,6 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel painel;
     // End of variables declaration//GEN-END:variables
 }
